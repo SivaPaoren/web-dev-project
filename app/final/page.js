@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
@@ -25,7 +25,7 @@ async function apiDelete(id) {
   return res.json();
 }
 
-export default function FinCustomerPage() {
+export default function FinalPage() {
   const [items, setItems] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,9 @@ export default function FinCustomerPage() {
     }
   };
 
-  useEffect(() => { reload(); }, []);
+  useEffect(() => {
+    reload();
+  }, []);
 
   const onCreate = handleSubmit(async (data) => {
     await apiCreate({
@@ -137,40 +139,29 @@ export default function FinCustomerPage() {
                     ) : it.interests}
                   </td>
                   <td className="py-2 pr-4 flex gap-2">
-                      {editingId === it._id ? (
-                        <>
-                          <button className="px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700 text-sm" onClick={onEdit}>💾 Save</button>
-                          <button className="px-3 py-1 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 text-sm" onClick={() => setEditingId(null)}>✖ Cancel</button>
-                        </>
-                      ) : (
-                        <>
-                          <Link
-                            href={`/fin-customer/${it._id}`}
-                            className="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm"
-                          >
-                            👁 View
-                          </Link>
-                          <button
-                            className="px-3 py-1 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 text-sm"
-                            onClick={() => startEdit(it)}
-                          >
-                            ✎ Edit
-                          </button>
-                          <button
-                            className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm"
-                            onClick={async () => {
-                              if (confirm("Delete this customer?")) {
-                                await apiDelete(it._id);
-                                reload();
-                              }
-                            }}
-                          >
-                            🗑 Delete
-                          </button>
-                        </>
-                      )}
-                    </td>
-
+                    {editingId === it._id ? (
+                      <>
+                        <button className="px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700 text-sm" onClick={onEdit}>💾 Save</button>
+                        <button className="px-3 py-1 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 text-sm" onClick={() => setEditingId(null)}>✖ Cancel</button>
+                      </>
+                    ) : (
+                      <>
+                        <Link href={`/final/${it._id}`} className="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm">👁 View</Link>
+                        <button className="px-3 py-1 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 text-sm" onClick={() => startEdit(it)}>✎ Edit</button>
+                        <button
+                          className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm"
+                          onClick={async () => {
+                            if (confirm("Delete this customer?")) {
+                              await apiDelete(it._id);
+                              reload();
+                            }
+                          }}
+                        >
+                          🗑 Delete
+                        </button>
+                      </>
+                    )}
+                  </td>
                 </tr>
               ))}
               {items.length === 0 && !loading && (
@@ -181,25 +172,11 @@ export default function FinCustomerPage() {
         </div>
       </section>
 
-      {/* Tiny Tailwind-ish utility styles */}
-            <style jsx>{`
-        .input {
-          @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500;
-        }
-        .btn {
-          @apply inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 active:scale-95 transition;
-        }
-        .btn-outline {
-          @apply inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:border-gray-400 hover:bg-gray-50 active:scale-95 transition;
-        }
-        .btn-ghost {
-          @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-blue-600 hover:bg-blue-50 active:scale-95 transition;
-        }
-        .btn-danger {
-          @apply inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 active:scale-95 transition;
-        }
+      <style jsx>{`
+        .input { @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500; }
+        .btn { @apply inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 active:scale-95 transition; }
+        .btn-outline { @apply inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:border-gray-400 hover:bg-gray-50 active:scale-95 transition; }
       `}</style>
-
     </main>
   );
 }

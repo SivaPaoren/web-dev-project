@@ -62,7 +62,7 @@ export default function CustomerDetail({ params }) {
     <main className="mx-auto max-w-3xl p-6 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Customer Detail</h1>
-        <Link href="/fin-customer" className="underline">Back</Link>
+        <Link href="/final" className="underline">Back</Link>
       </div>
 
       <section className="rounded-2xl border p-4 space-y-2">
@@ -92,9 +92,7 @@ export default function CustomerDetail({ params }) {
           </label>
 
           <div className="flex gap-3">
-            <button
-              className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 active:scale-95 transition text-sm"
-            >
+            <button className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 active:scale-95 transition text-sm">
               💾 Save
             </button>
             <button
@@ -103,27 +101,18 @@ export default function CustomerDetail({ params }) {
               onClick={async () => {
                 if (confirm("Delete this customer?")) {
                   await deleteOne(id);
-                  window.location.href = "/fin-customer";
+                  window.location.href = "/final";
                 }
               }}
             >
               🗑 Delete
             </button>
           </div>
-
         </form>
       </section>
 
-         <style jsx>{`
-        .input {
-          @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500;
-        }
-        .btn {
-          @apply inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 active:scale-95 transition;
-        }
-        .btn-danger {
-          @apply inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 active:scale-95 transition;
-        }
+      <style jsx>{`
+        .input { @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500; }
       `}</style>
     </main>
   );
