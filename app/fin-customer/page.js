@@ -138,38 +138,38 @@ export default function FinCustomerPage() {
                   </td>
                   <td className="py-2 pr-4 flex gap-2">
                       {editingId === it._id ? (
-                      <>
-                        <button className="px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700 text-sm" onClick={onEdit}>💾 Save</button>
-                        <button className="px-3 py-1 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 text-sm" onClick={() => setEditingId(null)}>✖ Cancel</button>
-                      </>
+                        <>
+                          <button className="px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700 text-sm" onClick={onEdit}>💾 Save</button>
+                          <button className="px-3 py-1 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 text-sm" onClick={() => setEditingId(null)}>✖ Cancel</button>
+                        </>
                       ) : (
-                      <>
-                        <Link
-                          href={`/fin-customer/${it._id}`}
-                          className="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm"
-                        >
-                          👁 View
-                        </Link>
-                        <button
-                          className="px-3 py-1 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 text-sm"
-                          onClick={() => startEdit(it)}
-                        >
-                          ✎ Edit
-                        </button>
-                        <button
-                          className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm"
-                          onClick={async () => {
-                            if (confirm("Delete this customer?")) {
-                              await apiDelete(it._id);
-                              reload();
-                            }
-                          }}
-                        >
-                          🗑 Delete
-                        </button>
-                      </>
+                        <>
+                          <Link
+                            href={`/fin-customer/${it._id}`}
+                            className="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm"
+                          >
+                            👁 View
+                          </Link>
+                          <button
+                            className="px-3 py-1 rounded-md bg-yellow-500 text-white hover:bg-yellow-600 text-sm"
+                            onClick={() => startEdit(it)}
+                          >
+                            ✎ Edit
+                          </button>
+                          <button
+                            className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm"
+                            onClick={async () => {
+                              if (confirm("Delete this customer?")) {
+                                await apiDelete(it._id);
+                                reload();
+                              }
+                            }}
+                          >
+                            🗑 Delete
+                          </button>
+                        </>
                       )}
-                      </td>
+                    </td>
 
                 </tr>
               ))}

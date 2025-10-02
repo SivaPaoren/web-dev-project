@@ -92,10 +92,14 @@ export default function CustomerDetail({ params }) {
           </label>
 
           <div className="flex gap-3">
-            <button className="btn">Save</button>
+            <button
+              className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 active:scale-95 transition text-sm"
+            >
+              💾 Save
+            </button>
             <button
               type="button"
-              className="btn-danger"
+              className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 active:scale-95 transition text-sm"
               onClick={async () => {
                 if (confirm("Delete this customer?")) {
                   await deleteOne(id);
@@ -103,9 +107,10 @@ export default function CustomerDetail({ params }) {
                 }
               }}
             >
-              Delete
+              🗑 Delete
             </button>
           </div>
+
         </form>
       </section>
 
