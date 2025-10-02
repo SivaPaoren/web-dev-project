@@ -1,4 +1,4 @@
-# Product App
+# Stock App (starter code)
 Next.js 14
 This app shows
 1. MongoDB CRUD operations using Mongoose
